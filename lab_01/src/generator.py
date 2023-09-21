@@ -32,18 +32,18 @@ def generateNumber():
 # addresses
 
 with open("./data/addresses.csv", mode = 'w') as file:
-    writer = csv.writer(file, delimiter=',', lineterminator='\n')
+    writer = csv.writer(file, delimiter=';', lineterminator='\n')
     
-    writer.writerow(("town", "street", "house"))
+    writer.writerow(("id", "town", "street", "house"))
 
-    for _ in range(addressesNum):
+    for i in range(addressesNum):
         address = fake.address().split(",")
         
         town = address[0]
         street = address[1]
         house = r.randint(1, 400)
     
-        writer.writerow((town, street, house))
+        writer.writerow((i + 1, town, street, house))
 
 # schools
 
@@ -51,9 +51,9 @@ addresses = [i + 1 for i in range(addressesNum)]
 
 with open("./data/schools.csv", mode = 'w') as file:
 
-    writer = csv.writer(file, delimiter=',', lineterminator='\n')
+    writer = csv.writer(file, delimiter=';', lineterminator='\n')
     
-    writer.writerow(("id_address", "construct_year", "type"))
+    writer.writerow(("id", "id_address", "construct_year", "type"))
 
     types = ["Лицей", "Гимназия", ""]
 
@@ -65,15 +65,15 @@ with open("./data/schools.csv", mode = 'w') as file:
         year = r.randint(1850, 2023)
         typeS = r.choice(types)
 
-        writer.writerow((address, year, typeS))
+        writer.writerow((i + 1, address, year, typeS))
 
 # teachers
 
 with open("./data/teachers.csv", mode = 'w') as file:
 
-    writer = csv.writer(file, delimiter=',', lineterminator='\n')
+    writer = csv.writer(file, delimiter=';', lineterminator='\n')
     
-    writer.writerow(("full_name", "age", "gender"))
+    writer.writerow(("id", "full_name", "age", "gender"))
 
     for i in range(teachersNum):
         
@@ -84,16 +84,17 @@ with open("./data/teachers.csv", mode = 'w') as file:
 
         age = r.randint(25, 65)
 
-        writer.writerow((name, age, gender))
+        writer.writerow((i + 1, name, age, gender))
 
 
 # classes
 
 with open("./data/classes.csv", mode = 'w') as file:
-    writer = csv.writer(file, delimiter=',', lineterminator='\n')
+    writer = csv.writer(file, delimiter=';', lineterminator='\n')
     
-    writer.writerow(("id_school", "grade", "letter"))
+    writer.writerow(("id", "id_school", "grade", "letter"))
 
+    t = 0
     for i in range(schoolsNum):
 
         school = r.choice(schools)
@@ -106,31 +107,32 @@ with open("./data/classes.csv", mode = 'w') as file:
 
             for k in range(amount):
                 studentsNum += r.randint(10, 15)
+                t += 1
 
-                writer.writerow((school, j + 1, str(chr(k + 64))))
+                writer.writerow((t, school, j + 1, str(chr(k + 65))))
 
-# puples
+# students
 
-with open("./data/puples.csv", mode = 'w') as file:
+with open("./data/students.csv", mode = 'w') as file:
 
-    writer = csv.writer(file, delimiter=',', lineterminator='\n')
+    writer = csv.writer(file, delimiter=';', lineterminator='\n')
 
-    writer.writerow(("id_class", "full_name", "gender", "phone"))
+    writer.writerow(("id", "id_class", "full_name", "gender", "phone"))
 
     for i in range(studentsNum):
-        id_class = r.randint(1, classesNum + 1)
+        id_class = r.randint(1, classesNum)
 
         name = fake.name()
         gender = "М" if name[-1] != "а" else "Ж"
         phone = generateNumber()
 
-        writer.writerow((id_class, name, gender, phone))
+        writer.writerow((i + 1, id_class, name, gender, phone))
 
 pairs = []
 
 with open("./data/lessons.csv", mode = 'w') as file:
 
-    writer = csv.writer(file, delimiter=',', lineterminator='\n')
+    writer = csv.writer(file, delimiter=';', lineterminator='\n')
 
     writer.writerow(("id_teacher", "id_class", "title",))
 
@@ -150,10 +152,3 @@ with open("./data/lessons.csv", mode = 'w') as file:
             titile = r.choice(subjects)
 
             writer.writerow((pair[0], pair[1], titile))
-    
-
-
-            
-
-
-
