@@ -9,14 +9,14 @@ ALTER TABLE addresses
 
 ALTER TABLE schools
     ADD CONSTRAINT pk_school_id PRIMARY KEY(id),
-    ADD CONSTRAINT fk_address_id FOREIGN KEY(id_address) REFERENCES addresses(id),
+    ADD CONSTRAINT fk_address_id FOREIGN KEY(id_address) REFERENCES addresses(id) ON DELETE CASCADE,
 
     ALTER COLUMN construct_year SET NOT NULL,
     ALTER COLUMN id_address SET NOT NULL;
 
 ALTER TABLE classes
     ADD CONSTRAINT pk_class_id PRIMARY KEY(id),
-    ADD CONSTRAINT fk_school_id FOREIGN KEY(id_school) REFERENCES schools(id),
+    ADD CONSTRAINT fk_school_id FOREIGN KEY(id_school) REFERENCES schools(id) ON DELETE CASCADE,
     
     ADD CONSTRAINT valid_grade CHECK(grade > 0 and grade < 12),
 
@@ -25,7 +25,7 @@ ALTER TABLE classes
 
 ALTER TABLE students
     ADD CONSTRAINT pk_puple_id PRIMARY KEY(id),
-    ADD CONSTRAINT fk_class_id FOREIGN KEY(id_class) REFERENCES classes(id),
+    ADD CONSTRAINT fk_class_id FOREIGN KEY(id_class) REFERENCES classes(id) ON DELETE CASCADE,
 
     ADD CONSTRAINT valid_gender CHECK(gender = 'М' or gender = 'Ж'),
 
@@ -42,7 +42,7 @@ ALTER TABLE teachers
     ALTER COLUMN age SET NOT NULL;
 
 ALTER TABLE lessons
-    ADD CONSTRAINT fk_teacher_id FOREIGN KEY(id_teacher) REFERENCES teachers(id),
-    ADD CONSTRAINT fk_class_id FOREIGN KEY(id_class) REFERENCES classes(id),
+    ADD CONSTRAINT fk_teacher_id FOREIGN KEY(id_teacher) REFERENCES teachers(id) ON DELETE CASCADE,
+    ADD CONSTRAINT fk_class_id FOREIGN KEY(id_class) REFERENCES classes(id) ON DELETE CASCADE,
 
     ALTER COLUMN title SET NOT NULL;

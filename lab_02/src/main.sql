@@ -2,7 +2,7 @@
 -- Выбрать уроки, возраст учителей которых больше 40
 -- Инструкция SELECT, использующая предикат сравнения
 -- SELECT *
--- FROM lessons L JOIN teachers T ON L.id_teacher = T.id;
+-- FROM lessons L JOIN teachers T ON L.id_teacher = T.id
 -- WHERE T.age > 40
 -- ORDER BY T.age;
 
@@ -181,19 +181,9 @@
 -- Инструкция DELETE с вложенным коррелированным подзапросом в
 -- предложении WHERE
 -- SELECT * FROM students
--- WHERE id in (SELECT id
---              FROM classes 
---              WHERE id_school = 2);
-
--- DELETE FROM students
--- WHERE id IN (SELECT id
---              FROM classes 
---              WHERE id_school = 2);
-
--- SELECT * FROM students
--- WHERE id in (SELECT id
---              FROM classes 
---              WHERE id_school = 2);
+-- WHERE class_id in (SELECT id
+--                    FROM classes 
+--                    WHERE students.class_id > 10 AND id != 13 AND grade = 7);
 
 -- 22
 -- Инструкция SELECT, использующая простое обобщенное табличное
@@ -268,3 +258,16 @@
 -- SELECT * 
 -- FROM not_duplicate_schools
 -- WHERE num = 1;
+
+
+SELECT full_name, age, title
+		FROM teachers T JOIN lessons L ON L.id_teacher = T.id
+WHERE L.id_class IN (SELECT MIN(id)
+					 FROM classes 
+					 WHERE id_school IN (SELECT id
+										FROM schools
+										WHERE id_address IN (SELECT id
+															FROM addresses
+															WHERE town LIKE '%Москва%')))
+ORDER BY full_name;
+			 
