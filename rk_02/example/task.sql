@@ -108,7 +108,7 @@ SELECT e.id,
 FROM employee e JOIN department d ON d.id = e.id_department
 WHERE d.id = 1;
 
--- 3. Запрос с GROUP BY и Having
+-- 3. Запрос с GROUP BY и HAVING
 SELECT e.position, MIN(e.salary)
 FROM drug d JOIN responses r ON r.id_drug = d.id 
             JOIN employee e ON r.id_empl = e.id
