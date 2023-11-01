@@ -1,3 +1,4 @@
+-- Active: 1696673577093@@127.0.0.1@5432@Школы@public
 -- 1. Хранимую процедуру без параметров или с параметрами
 -- Обновить год постройки для для обычных школ
 CREATE OR REPLACE PROCEDURE prod1(year INT)
@@ -41,7 +42,7 @@ BEGIN
 END;
 $$ LANGUAGE PLPGSQL;
 
-CALL prod2(0);
+CALL prod2(10);
 DROP PROCEDURE IF EXISTS prod2;
 
 -- 3. Хранимую процедуру с курсором

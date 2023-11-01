@@ -17,7 +17,7 @@ AFTER INSERT ON students
 FOR EACH ROW EXECUTE PROCEDURE info_student();
 
 INSERT INTO students VALUES
-(275000, 1111, 'Алексеев Алексей', 'М', '89161234567');
+(275000, 999, 'Алексеев Алексей', 'М', '89161234567');
 
 DELETE FROM students
 WHERE full_name = 'Алексеев Алексей';
@@ -56,7 +56,7 @@ INSTEAD OF INSERT ON class_view
 FOR EACH ROW EXECUTE PROCEDURE insert_class();
 
 INSERT INTO class_view VALUES
-(275000, 16, 'Алексеев Алексей', 'Ж', '89161234567');
+(275000, 15, 'Алексеев Алексей', 'М', '89161234567');
 
 DROP TRIGGER IF EXISTS insert_class_trigger ON class_view;
 DROP FUNCTION IF EXISTS insert_class;
