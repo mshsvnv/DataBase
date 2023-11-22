@@ -3,20 +3,20 @@
 -- Определяемую пользователем скалярную функцию 
 
 -- Определить возраст школы относительно заданного года
-CREATE OR REPLACE FUNCTION func_1(cur_year integer, constr_year integer)
-  RETURNS integer
+CREATE OR REPLACE FUNCTION func_1(cur_year INT, constr_year INT)
+  RETURNS INT
 AS $$
     return cur_year - constr_year 
 $$ LANGUAGE plpython3u;
 
 SELECT id, func_1(2023, construct_year) AS years
-FROM schools
+FROM schools 
 WHERE func_1(2023, construct_year) < 10;
 
 -- Пользовательскую агрегатную функцию 
 
 -- Определить количество школ (тип задается), возраст которых больше заданного
-CREATE OR REPLACE FUNCTION func_2(cur_year integer, kind TEXT)
+CREATE OR REPLACE FUNCTION func_2(cur_year INT, kind TEXT)
 RETURNS INT 
 AS $$
     query = '''
@@ -70,8 +70,7 @@ AS $$
 
 $$ LANGUAGE PLPYTHON3U;
 
-SELECT * FROM func3();
-
+SELECT * FROM func_3();
 
 -- Хранимая процедура
 
@@ -96,7 +95,7 @@ $$ LANGUAGE plpython3u;
 DELETE FROM students
 WHERE full_name LIKE '%Савинова%';
 
-CALL prod_1(15042003, '712', 'Савинова Мария', 'Ж', '88005353535');
+CALL prod_1(15042005, '712', 'Савинова Мария', 'Ж', '88005353535');
 
 SELECT *
 FROM students
@@ -104,7 +103,7 @@ WHERE full_name LIKE '%Савинова%';
 
 -- Триггер
 -- Триггер AFTER.
--- Выводит сообщение при дабавлении информации в таблицу 'students'.
+-- Выводит сообщение при добавлении информации в таблицу 'students'.
 
 CREATE OR REPLACE FUNCTION trigger_info()
 RETURNS TRIGGER
@@ -124,6 +123,7 @@ DELETE FROM students
 WHERE full_name LIKE '%Савинова%';
 
 -- Тип данных
+
 -- Получить информацию о школах, имеющих количество классов больше заданного
 CREATE TYPE cur_school AS
 (
