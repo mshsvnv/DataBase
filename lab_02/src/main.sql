@@ -260,14 +260,14 @@
 -- WHERE num = 1;
 
 
-SELECT full_name, age, title
-		FROM teachers T JOIN lessons L ON L.id_teacher = T.id
-WHERE L.id_class IN (SELECT MIN(id)
-					 FROM classes 
-					 WHERE id_school IN (SELECT id
-										FROM schools
-										WHERE id_address IN (SELECT id
-															FROM addresses
-															WHERE town LIKE '%Москва%')))
-ORDER BY full_name;
+-- SELECT full_name, age, title
+-- 		FROM teachers T JOIN lessons L ON L.id_teacher = T.id
+-- WHERE L.id_class IN (SELECT MIN(id)
+-- 					 FROM classes 
+-- 					 WHERE id_school IN (SELECT id
+-- 										FROM schools
+-- 										WHERE id_address IN (SELECT id
+-- 															FROM addresses
+-- 															WHERE town LIKE '%Москва%')))
+-- ORDER BY full_name;
 			 

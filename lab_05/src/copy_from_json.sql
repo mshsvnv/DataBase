@@ -1,0 +1,1 @@
+\copy data_json(data) from 'c:\\Users\\mshsv\\OneDrive\\Рабочий стол\\studying\\5_sem\\Data Base\\lab_05\\src\\data\\schools.json';

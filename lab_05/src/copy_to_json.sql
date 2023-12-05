@@ -1,0 +1,6 @@
+\copy (select array_to_json(array_agg(row_to_json(s))) from schools s) to 'c:\\Users\\mshsv\\OneDrive\\Рабочий стол\\studying\\5_sem\\Data Base\\lab_05\\src\\data\\schools.json';
+\copy (select array_to_json(array_agg(row_to_json(ad))) from addresses ad) to 'c:\\Users\\mshsv\\OneDrive\\Рабочий стол\\studying\\5_sem\\Data Base\\lab_05\\src\\data\\addresses.json';
+\copy (select array_to_json(array_agg(row_to_json(st))) from students st) to 'c:\\Users\\mshsv\\OneDrive\\Рабочий стол\\studying\\5_sem\\Data Base\\lab_05\\src\\data\\students.json';
+\copy (select array_to_json(array_agg(row_to_json(t))) from teachers t) to 'c:\\Users\\mshsv\\OneDrive\\Рабочий стол\\studying\\5_sem\\Data Base\\lab_05\\src\\data\\teachers.json';
+\copy (select array_to_json(array_agg(row_to_json(l))) from lessons l) to 'c:\\Users\\mshsv\\OneDrive\\Рабочий стол\\studying\\5_sem\\Data Base\\lab_05\\src\\data\\lessons.json';
+\copy (select array_to_json(array_agg(row_to_json(c))) from classes c) to 'c:\\Users\\mshsv\\OneDrive\\Рабочий стол\\studying\\5_sem\\Data Base\\lab_05\\src\\data\\classes.json';
