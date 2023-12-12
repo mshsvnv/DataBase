@@ -7,7 +7,7 @@ select row_to_json(s) from schools s;
 -- 2. Выполнить загрузку и сохранение JSON файла в таблицу. Созданная таблица после всех
 -- манипуляций должна соответствовать таблице базы данных, созданной  в первой лабораторной работе.
 
-DROP TABLE IF EXISTS data_json, json_table, s_json_attr, schools_json, schools_json;
+drop table IF EXISTS data_json, json_table, s_json_attr, schools_json, schools_json;
 -- Преобразовать данные
 drop table if exists schools_json;
 create table if not exists schools_json 

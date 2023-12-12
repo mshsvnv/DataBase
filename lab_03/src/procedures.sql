@@ -1,12 +1,12 @@
 -- Active: 1696673577093@@127.0.0.1@5432@Школы@public
 -- 1. Хранимую процедуру без параметров или с параметрами
--- Обновить год постройки для для обычных школ
+-- Обновить год постройки для обычных школ
 CREATE OR REPLACE PROCEDURE prod1(year INT)
 AS $$
 BEGIN
     UPDATE schools
         SET construct_year = schools.construct_year + year
-    WHERE kind IS NULL AND schools.construct_year < 2000;
+    WHERE kind IS NULL AND schools.construct_year = year;
 END;
 $$ LANGUAGE PLPGSQL;
 
